@@ -4,9 +4,27 @@ A Python library and CLI for managing Nostr relays using NIP-86 (Relay Managemen
 
 ## Installation
 
+### From PyPI (when published)
+
 ```bash
 pip install nostr-relay-mgmt
 ```
+
+### From GitHub (current development)
+
+```bash
+pip install git+https://github.com/dmcarrington/nostr-relay-mgmt.git
+```
+
+### From local source (for development)
+
+```bash
+git clone https://github.com/dmcarrington/nostr-relay-mgmt.git
+cd nostr-relay-mgmt
+pip install -e .
+```
+
+The `-e` flag installs in "editable" mode, so code changes are immediately available without reinstalling.
 
 ## Usage
 
