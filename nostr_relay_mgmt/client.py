@@ -1,9 +1,12 @@
 """NIP-86 relay management client."""
 
 import json
+import time
 import requests
 from typing import Any, Dict, List, Optional
 from urllib.parse import urljoin
+
+from .nip98 import nip98_authorization_header
 
 
 class NIP86Client:
@@ -42,16 +45,18 @@ class NIP86Client:
             "params": params,
         }
 
-        # NIP-98: Create HTTP auth event
-        # For now, we'll use a simple header-based approach
-        # The actual implementation should create a proper NIP-98 event
+        # NIP-98: Create HTTP auth event with the relay URL as the u tag
+        auth_header = nip98_authorization_header(
+            method="POST",
+            url=self.http_url,
+            private_key=self.admin_privkey,
+            payload=json.dumps(request_body),
+        )
+
         headers = {
             "Content-Type": "application/nostr+json+rpc",
+            "Authorization": auth_header,
         }
-
-        # TODO: Implement NIP-98 event signing
-        # For prototype, we'll just send without auth (relays will reject)
-        # Full auth implementation needed for production
 
         # Make the HTTP POST request
         response = requests.post(
