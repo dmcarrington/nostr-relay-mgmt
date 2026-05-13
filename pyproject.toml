@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nostr-relay-mgmt"
+version = "0.1.0"
+description = "Python client and CLI for NIP-86 Relay Management API"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "David Carrington", email = "davidcarrington@example.com"}
+]
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.31.0",
+    "nostr-tools>=0.0.3",
+    "click>=8.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+nip86 = "nostr_relay_mgmt.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,4 @@
+requests>=2.31.0
+nostr-tools>=0.0.3
+click>=8.0.0
+pydantic>=2.0.0
